@@ -38,6 +38,11 @@ function Movies() {
       getMovieData();
   }, [])
 
+  const getGenreId = (genreName) => {
+    const genreObject = genres.find(g => g.name.toLowerCase() === genreName.toLowerCase())
+    return genreObject ? genreObject.id : null
+  }
+
   useEffect(() => {
     if ( genreFromHome) {
       console.log(genreFromHome)
@@ -57,14 +62,8 @@ function Movies() {
         setFilteredMovies(movies)
         setDisplayedGenre('')
       }
-      //hasMounted.current = true;
    }
-  }, [genreFromHome, genres, movies])
-
-  const getGenreId = (genreName) => {
-    const genreObject = genres.find(g => g.name.toLowerCase() === genreName.toLowerCase())
-    return genreObject ? genreObject.id : null
-  } 
+  }, [genreFromHome, genres, movies, getGenreId]) 
 
   const handleSearch = () => {
     setLoading(true)

@@ -31,7 +31,7 @@ function Home() {
 
               <div className="header__img">
                 <figure className="header__img--wrapper">
-                  <img className="header__img--image" src={MovieImg} alt="Movies Image" />
+                  <img className="header__img--image" src={MovieImg} alt="Many Movies Poster" />
                 </figure>
               </div>
             </div>
