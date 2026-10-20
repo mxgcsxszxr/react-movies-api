@@ -28,22 +28,22 @@ const Nav = () => {
               <Link to="" className="nav__link nav__link--contact">Contact</Link>
             </div>
           </div>
-          <button className="btn__menu--open" onClick= {openMenu()}>
+          <button className="btn__menu--open" onClick= {openMenu}>
             <FontAwesomeIcon icon="bars" />     
           </button>
           <div className="menu__backdrop">
-            <button className="btn__menu btn__menu--close" onClick= {closeMenu()}>
-              {/* <FontAwesomeIcon icon="times" />      */}
+            <button className="btn__menu btn__menu--close" onClick= {closeMenu}>
+              <FontAwesomeIcon icon="times" />     
             </button>
             <ul className="menu__links">
               <li className="menu__list">
-                <a href="index.html" className="menu__link" onClick= {closeMenu()}>Home</a>
+                <Link to="/" className="menu__link">Home</Link>
               </li>
               <li className="menu__list">
-                <a href="movies.html" className="menu__link" onClick= {closeMenu()}>Find a Movie</a>
+                <Link to="/Movies" className="menu__link">Find a  Movie</Link>
               </li>
               <li className="menu__list">
-                <a className="menu__link no-cursor" onClick= {closeMenu()}>Contact</a>
+                <Link to="" className="menu__link menu__link--contact">Contact</Link>
               </li>
             </ul>
           </div>

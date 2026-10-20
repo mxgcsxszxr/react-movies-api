@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { useLocation, Link } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import MovieOverview from './movieOverview'
 
 
 function Movies() {
@@ -86,17 +85,6 @@ function Movies() {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
   }
 
-  function onSearchKeyPress(key) {
-    if (key === 'Enter') {
-      handleSearch()
-    } 
-  }
-
-  // const handleMovieClick = (movie) => {
-  //   // Navigate to MovieOverview and pass the movie as state
-  //   navigate(`/movies/${movie.id}`, { state: { movies } });
-  // };
-
   return (
     <>
     <section>
@@ -171,7 +159,7 @@ function Movies() {
                 return (
                   <div id="results" className="movie__card" key={movie.id}>
                     <div className="movie__info" onClick={() => navigate(`/movieOverview/${movie.id}`, { state: { movies: movies, genres: genres } })}>
-                        <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} className="movie__poster" />
+                        <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt='movie poster' className="movie__poster" />
                       <h3>{movie.title}</h3>
                       <p>
                         <b>Genre: </b>

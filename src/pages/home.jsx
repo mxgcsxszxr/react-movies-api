@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import MovieImg from "../assets/CINEMA-CLASSICS-POSTER.jpg"
-import { Link } from "react-router-dom"
 
 function Home() {
   const [genre, setGenre] = useState('');
@@ -11,12 +10,6 @@ function Home() {
   const handleSearch = (genre) => {
       navigate(`/movies`, {state: { genre }});
   };
-
-  function onSearchKeyPress(key) {
-    if (key === 'Enter') {
-      handleSearch()
-    } 
-  }
 
   return (
     <>
@@ -38,7 +31,7 @@ function Home() {
 
               <div className="header__img">
                 <figure className="header__img--wrapper">
-                  <img className="header__img--image" src={MovieImg} alt=""  />
+                  <img className="header__img--image" src={MovieImg} alt="Movies Image" />
                 </figure>
               </div>
             </div>
