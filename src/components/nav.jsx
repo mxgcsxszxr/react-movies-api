@@ -32,18 +32,18 @@ const Nav = () => {
             <FontAwesomeIcon icon="bars" />     
           </button>
           <div className="menu__backdrop">
-            <button className="btn__menu btn__menu--close" onClick= {closeMenu}>
+            <button className="btn__menu btn__menu--close" onClick={closeMenu}>
               <FontAwesomeIcon icon="times" />     
             </button>
             <ul className="menu__links">
               <li className="menu__list">
-                <Link to="/" className="menu__link">Home</Link>
+                <Link to="/" className="menu__link" onClick={closeMenu}>Home</Link>
               </li>
               <li className="menu__list">
-                <Link to="/Movies" className="menu__link">Find a  Movie</Link>
+                <Link to="/Movies" className="menu__link" onClick={closeMenu}>Find a  Movie</Link>
               </li>
               <li className="menu__list">
-                <Link to="" className="menu__link menu__link--contact">Contact</Link>
+                <Link to="" className="menu__link menu__link--contact" onClick={closeMenu}>Contact</Link>
               </li>
             </ul>
           </div>

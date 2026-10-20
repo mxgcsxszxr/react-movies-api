@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
@@ -38,10 +38,15 @@ function Movies() {
       getMovieData();
   }, [])
 
-  const getGenreId = (genreName) => {
-    const genreObject = genres.find(g => g.name.toLowerCase() === genreName.toLowerCase())
+  const getGenreId = useCallback((genre) => {
+    const genreObject = genres.find(g => g.name.toLowerCase() === genre.toLowerCase())
     return genreObject ? genreObject.id : null
-  }
+  }, [genres]);
+
+  // const getGenreId = (genreName) => {
+  //   const genreObject = genres.find(g => g.name.toLowerCase() === genreName.toLowerCase())
+  //   return genreObject ? genreObject.id : null
+  // }
 
   useEffect(() => {
     if ( genreFromHome) {
