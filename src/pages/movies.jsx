@@ -43,11 +43,6 @@ function Movies() {
     return genreObject ? genreObject.id : null
   }, [genres]);
 
-  // const getGenreId = (genreName) => {
-  //   const genreObject = genres.find(g => g.name.toLowerCase() === genreName.toLowerCase())
-  //   return genreObject ? genreObject.id : null
-  // }
-
   useEffect(() => {
     if ( genreFromHome) {
       console.log(genreFromHome)
@@ -89,6 +84,16 @@ function Movies() {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
   }
 
+  function filterMovies (filter) {
+  console.log(filter)
+  if (filter === 'RELEASE_DATE') {
+    setFilteredMovies(movies.slice().sort((a, b) => (a.release_date < b.release_date ? -1 : 1)))
+  }
+  if (filter === 'RATING') {
+    setFilteredMovies(movies.slice().sort((a, b) => (b.vote_average - a.vote_average)))
+  }
+  }
+
   return (
     <>
     <section>
@@ -122,21 +127,18 @@ function Movies() {
             </h2>
 
             <div className="movies__genres">
-              <label className="genre__name">Search a Genere:</label>
-              <div className="genre__search">
-                <input type="text" id="genreSearch2" value={searchGenre} className="genre__input" onChange={(event) => setSearchGenre(event.target.value)} onKeyDown={(event) => event.key === 'Enter' && handleSearch()}placeholder="Genre. . ."  />
-                <button id="genreBtn2" className="genre__btn" type="button" onClick={() => handleSearch(searchGenre)}>
-                  <FontAwesomeIcon icon="circle-arrow-right" />
-                </button>
+              <label className="filter__name">Filter Movies By:</label>
+              <div className="filter__search">
+                <select id='filter' className="filter__select" defaultValue='DEFAULT' onChange={(event) => filterMovies(event.target.value)}>
+                  <option value='DEFAULT' disabled>Sort</option>
+                  <option value='RELEASE_DATE'>Release Date</option>
+                  <option value='RATING'>Rating</option>
+                </select>
               </div>
             </div>
           </div>
         </div>
       </div>
-        <div className="movies__results">
-          <div className="movies">
-            {/* <i className="fa-solid fa-spinner movies__loading--spinner"></i> */}
-          </div>
         <div className="movies__list">
           {
             loading ? (
@@ -151,8 +153,8 @@ function Movies() {
                 </div>
               )
             ) : (
-            Array.isArray(movies) && movies.length > 0 ? (
-            filteredMovies.map(movie => {
+              Array.isArray(movies) && movies.length > 0 ? (
+              filteredMovies.map(movie => {
                 const movieGenres = movie.genre_ids
                 .map((genreId) => {
                   const genreName = genres.find((g) => g.id === genreId);
@@ -174,21 +176,13 @@ function Movies() {
                       </p>
                     </div>
                   </div>
-                ); 
+                )
               })) : (
-                <p>No movies found for this genre.</p>
+                <p className="movies__no-results">No movies found for this genre.</p>
               )
             )
           }
-       
-              
-          {/* <div className="movie--card--overlay">
-            <p>
-              More Info
-            </p>
-          </div> */}
         </div>
-      </div>
     </section>
     </>
   );
